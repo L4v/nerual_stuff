@@ -1,5 +1,5 @@
 import numpy as np
-from neural_network import NeuralNetwork
+from steve_mind import NeuralNetwork
 if __name__ == "__main__":
 	
 	neural_network = NeuralNetwork()
