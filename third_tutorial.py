@@ -15,4 +15,5 @@ def main():
 		W[l] = np.random.random_sample((nn_structure[l], nn_structure[l-1]))
 		b[l] = r.random_sample((nn_structure[l],))
 	
+	
 	nn.setup_weights(weights);
