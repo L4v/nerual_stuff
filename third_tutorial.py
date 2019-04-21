@@ -1,3 +1,4 @@
+#https://www.youtube.com/watch?v=PO4hePKWIGQ
 from neural_network import NeuralNetwork
 import numpy as np
 import matplotlib.pyplot as plot
