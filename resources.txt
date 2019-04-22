@@ -1,0 +1,5 @@
+# RESOURCES AND CREDITS:
+#https://towardsdatascience.com/build-a-handwritten-text-recognition-system-using-tensorflow-2326a3487cd5
+#https://github.com/githubharald/SimpleHTR
+#http://www.fki.inf.unibe.ch/databases/iam-handwriting-database
+https://www.youtube.com/watch?v=RznKVRTFkBY&list=PLZbbT5o_s2xrwRnXk_yCPtnqqo4_u2YGL
