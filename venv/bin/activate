@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/jigsaw/workspace/python/neural_networks/venv"
+VIRTUAL_ENV="/home/hk-47/workspace/python/neural_stuff/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

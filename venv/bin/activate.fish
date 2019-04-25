@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/jigsaw/workspace/python/neural_networks/venv"
+set -gx VIRTUAL_ENV "/home/hk-47/workspace/python/neural_stuff/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
