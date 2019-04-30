@@ -15,7 +15,7 @@ handwritten digits!
 
 # Requirements
 ## To install required python packages, run the following command:
-```pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 ## Note
 I recommend making a virtual environment first, as it makes life much easier
