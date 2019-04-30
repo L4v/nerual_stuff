@@ -13,3 +13,9 @@ Implementation of Steve's brain, can predict a simple boolean function with
 Prototype of Steven, the neural network that can, hopefully, recognize 8-bit
 handwritten digits!
 
+# Requirements
+## To install required python packages, run the following command:
+```pip install -r requirements.txt
+
+## Note
+I recommend making a virtual environment first, as it makes life much easier
