@@ -1,7 +1,8 @@
 #https://youtu.be/Boo6SmgmHuM DONE
 #https://www.youtube.com/watch?v=dzoh8cfnvnI DONE
 #https://www.youtube.com/watch?v=2f-NjDUvZIE DONE
-#https://www.youtube.com/watch?v=km7pxKy4UHU
+#https://www.youtube.com/watch?v=km7pxKy4UHU DONE
+#https://www.youtube.com/watch?v=7n1SpeudvAE
 import os; os.environ['KERAS_BACKEND'] = 'theano' # TO SET THEANO AS DEFAULT IF NOT CONFIG-ed ON THE OS
 import keras
 from tut_1 import generate_test_data, generate_training_data
@@ -14,6 +15,7 @@ from keras.metrics import categorical_crossentropy
 from sklearn.metrics import confusion_matrix
 import itertools
 import matplotlib.pyplot as plt
+import numpy as np
 
 model = Sequential([
 	Dense(16, input_shape=(1,), activation="relu"), # Dense input layer with 16 neurons, 1-D data nad RELU activation func.
@@ -61,58 +63,44 @@ print("")
 # CONFUSION MATRIX
 cm = confusion_matrix(test_labels, rounded_predictions)
 # FROM https://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html
-def plot_confusion_matrix(y_true, y_pred, classes,
-                          normalize=False,
-                          title=None,
-                          cmap=plt.cm.Blues):
-    """
-    This function prints and plots the confusion matrix.
-    Normalization can be applied by setting `normalize=True`.
-    """
-    if not title:
-        if normalize:
-            title = 'Normalized confusion matrix'
-        else:
-            title = 'Confusion matrix, without normalization'
+def plot_confusion_matrix(cm, classes,
+							normalize=False,
+							title="Connfusion matrix",
+							cmap=plt.cm.Blues):
 
-    # Compute confusion matrix
-    cm = confusion_matrix(y_true, y_pred)
-    # Only use the labels that appear in the data
-    classes = classes[unique_labels(y_true, y_pred)]
-    if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        print("Normalized confusion matrix")
-    else:
-        print('Confusion matrix, without normalization')
+	plt.imshow(cm, interpolation="nearest", cmap=cmap)
+	plt.title(title)
+	plt.colorbar()
+	tick_marks = np.arange(len(classes))
+	plt.xticks(tick_marks, classes, rotation=45)
+	plt.yticks(tick_marks, classes)
 
-    print(cm)
+	if normalize:
+		cm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
+		print("Normalized confusion matrix")
+	else:
+		print("Confusion matrix, without normalization")
 
-    fig, ax = plt.subplots()
-    im = ax.imshow(cm, interpolation='nearest', cmap=cmap)
-    ax.figure.colorbar(im, ax=ax)
-    # We want to show all ticks...
-    ax.set(xticks=np.arange(cm.shape[1]),
-           yticks=np.arange(cm.shape[0]),
-           # ... and label them with the respective list entries
-           xticklabels=classes, yticklabels=classes,
-           title=title,
-           ylabel='True label',
-           xlabel='Predicted label')
+	print(cm)
 
-    # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
-             rotation_mode="anchor")
+	thresh = cm.max() / 2.
+	for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+		plt.text(j, i, cm[i, j],
+				horizontalalignment="center",
+				color="white" if cm[i, j] > thresh else "black")
 
-    # Loop over data dimensions and create text annotations.
-    fmt = '.2f' if normalize else 'd'
-    thresh = cm.max() / 2.
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            ax.text(j, i, format(cm[i, j], fmt),
-                    ha="center", va="center",
-                    color="white" if cm[i, j] > thresh else "black")
-    fig.tight_layout()
+		plt.tight_layout()
+		plt.ylabel("True label")
+		plt.xlabel("Predicted label")
 
 
 cm_plot_labels = ["no_side_effects", "had_side_effects"]
 plot_confusion_matrix(cm, cm_plot_labels, title="Confusion Matrix")
+plt.show()
+
+# Saves all the model properties, weights, optimizer, states etc...
+model.save("medical_trial_model.h5")
+
+# json_string = model.to_json() # Saves only the model architecture as JSON
+
+# model.save_weights("weights.h5") # Saves only the weights of the model
